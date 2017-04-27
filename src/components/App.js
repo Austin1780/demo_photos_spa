@@ -3,8 +3,10 @@ import {
   BrowserRouter as Router,
   Route,
   NavLink,
+  Switch,
 } from 'react-router-dom'
 import About from './About'
+import PhotosContainer from './PhotosContainer'
 
 const NavLinks = () => (
   <div className="NavLinks">
@@ -25,9 +27,12 @@ const App = () => (
     <div>
       <NavLinks />
 
-      <Route exact path="/" render={() => <h1>Home</h1>} />
-      <Route path="/photos" render={() => <h1>Photos</h1>} />
-      <Route path="/about" component={About} />
+      <Switch>
+        <Route exact path="/" render={() => <h1>Home</h1>} />
+        <Route path="/photos" component={PhotosContainer} />
+        <Route path="/about" component={About} />
+        <Route render={() => <h1>Page not found</h1>} />
+      </Switch>
     </div>
   </Router>
 )
