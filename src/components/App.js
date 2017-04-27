@@ -1,19 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  NavLink,
+} from 'react-router-dom'
+import About from './About'
 
-class App extends Component {
-  render() {
+const NavLinks = () => (
+  <div className="NavLinks">
+    <NavLink activeClassName="active" exact to="/">
+      Home
+    </NavLink>{' '}
+    <NavLink activeClassName="active" to="/photos">
+      Photos
+    </NavLink>{' '}
+    <NavLink activeClassName="active" to="/about">
+      About
+    </NavLink>
+  </div>
+)
 
-    return (
-      <div className="App">
-        <div className="App-header">
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+const App = () => (
+  <Router>
+    <div>
+      <NavLinks />
 
-export default App;
+      <Route exact path="/" render={() => <h1>Home</h1>} />
+      <Route path="/photos" render={() => <h1>Photos</h1>} />
+      <Route path="/about" component={About} />
+    </div>
+  </Router>
+)
+
+export default App
