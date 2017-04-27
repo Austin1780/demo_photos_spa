@@ -3,3 +3,18 @@ body {
   padding: 20px;
   font-family: sans-serif;
 }
+
+.active {
+  text-decoration: none;
+  color: #ccc;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.PhotoCard {
+  margin-bottom: 5px;
+}
