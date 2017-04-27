@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import Filters from './Filters'
+import {getParams} from '../helpers'
 
 const Photos = ({photos, filters}) => {
   const photoCards = photos.map((photo) =>(
@@ -17,14 +19,25 @@ const Photos = ({photos, filters}) => {
   return (
     <div className="Photos">
       <h1>Photos</h1>
+      <Filters filters={filters} />
       <div className="grid">{photoCards}</div>
     </div>
   )
 }
 
-const mapStateToProps = (state) => {
+function getVisiblePhotos(photos, currentFilter) {
+  if (!currentFilter) {
+    return photos
+  }
+
+  return photos.filter((photo) => (photo.filter === currentFilter))
+}
+
+const mapStateToProps = (state, ownProps) => {
+  const currentFilter = getParams(ownProps.location.search).filterBy
+
   return {
-    photos: state.photos,
+    photos: getVisiblePhotos(state.photos, currentFilter),
     filters: state.filters,
   }
 }
