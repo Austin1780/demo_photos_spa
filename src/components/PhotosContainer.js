@@ -1,13 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 const Photos = ({photos, filters}) => {
   const photoCards = photos.map((photo) =>(
     <div className="PhotoCard" key={photo.id}>
-      <img
-        src={photo.images.thumbnail.url}
-        alt={photo.caption ? photo.caption.text : photo.id}
-      />
+      <Link to={`/photos/${photo.id}`}>
+        <img
+          src={photo.images.thumbnail.url}
+          alt={photo.caption ? photo.caption.text : photo.id}
+        />
+      </Link>
     </div>
   ))
 
